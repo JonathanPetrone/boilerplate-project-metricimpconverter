@@ -30,16 +30,11 @@ function splitInputString(input){
     
     if (stringHasLetter){
         if (charAtIndex.match(/[A-Za-z]/)){
-          console.log("its a match -> " + charAtIndex)
           
           //slices the input with the end being the first letter occuring and saving a string up top that point
           numberInput = input.slice(0, i)
           unitInput = input.slice(i)
-    
-          console.log("number: " + numberInput + "unit: " + unitInput);
-          
           result = [numberInput, unitInput];
-          console.log(result);
           
           return result
             }
@@ -62,11 +57,9 @@ function ConvertHandler() {
   
   if(!stringHasNum && isFirstCharIsLetter){
     result = 1;
-    console.log(result)
     return result
   } else if (!stringHasNum && !isFirstCharIsLetter){
     result = "Invalid number"
-    console.log(result)
     return result
   }
 
@@ -78,7 +71,6 @@ function ConvertHandler() {
   
   if (unCleanString) {
     result = "Invalid number"
-    console.log("String is unclean: " + result);
     return result
   }
   
@@ -96,7 +88,7 @@ function ConvertHandler() {
 
     if (slashesInString > 1){
       result = "Invalid number";
-      console.log("There are more than one slashes: " + result)
+      console.log(result)
       return result;
     }
 
@@ -131,12 +123,42 @@ function ConvertHandler() {
       return result
       }
     }
-  }
+
   
   this.getUnit = function(input) {
     let result;
+    let getUnitInputString = splitInputString(input);
+    let inputUnit = getUnitInputString[1];
     
-    return result;
+    let checkInputUnit = inputUnit.toLowerCase();
+    console.log(checkInputUnit);
+    
+    switch(checkInputUnit){
+        case "km":
+            inputUnit = "km"
+            break;
+        case "mi":
+            inputUnit = "mi"
+            break;
+        case "gal":
+            inputUnit = "gal"
+            break;
+        case "l":
+            inputUnit = "L"
+            break;
+        case "lbs":
+            inputUnit = "lbs"
+            break;
+        case "kg":
+            inputUnit = "kg"
+            break;    
+        default:
+            result = "Invalid unit"
+            console.log(result)
+            return result;
+    }
+
+    return inputUnit;
   };
   
   this.getReturnUnit = function(initUnit) {
@@ -185,7 +207,6 @@ function ConvertHandler() {
     
     return result;
   };
-  
-
+}
 
 module.exports = ConvertHandler;

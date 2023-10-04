@@ -87,24 +87,50 @@ suite('Unit Tests', function(){
     test('Read each valid input unit', function () {
         
         // Arrange
+        const kilometers = "km";
+        const miles = "mi";
+        const pounds= "lbs";
+        const kilograms = "kg";
+        const gallons = "gal";
+        const litres = "L";
         
         // Act
+        const handleKilometers = convertHandler.getUnit(kilometers);
+        
+        const handleMiles = convertHandler.getUnit(miles);
+        const handlePounds = convertHandler.getUnit(pounds);
+        const handleKilograms = convertHandler.getUnit(kilograms);
+        const handleGallons = convertHandler.getUnit(gallons);
+        const handleLitres = convertHandler.getUnit(litres);
         
         // Assert
-       
-        assert.fail();
-    });
+        const expectedKilometers = "km";
+        const expectedMiles = "mi";
+        const expectedPounds = "lbs";
+        const expectedKilograms = "kg";
+        const expectedGallons = "gal";
+        const expectedLitres = "L";
+
+        assert.equal(handleKilometers, expectedKilometers, `Expected ${expectedKilometers}, but got ${handleKilometers}`);
+        assert.equal(handleMiles, expectedMiles, `Expected ${expectedMiles}, but got ${handleMiles}`);
+        assert.equal(handlePounds, expectedPounds, `Expected ${expectedPounds}, but got ${handlePounds}`);
+        assert.equal(handleKilograms, expectedKilograms, `Expected ${expectedKilograms}, but got ${handleKilograms}`);
+        assert.equal(handleGallons, expectedGallons, `Expected ${expectedGallons}, but got ${handleGallons}`);
+        assert.equal(handleLitres, expectedLitres, `Expected ${expectedLitres}, but got ${handleLitres}`);
+      });
 
     test('Return an error for an invalid input unit', function () {
         
         // Arrange
+        const input = ".-qw";
         
         // Act
+        const unit = convertHandler.getUnit(input);
         
         // Assert
-       
-        assert.fail();
-    });
+        const expectedUnit = "Invalid unit";
+        assert.equal(unit, expectedUnit, `Expected ${expectedUnit}, but got ${unit}`);
+      });
 
     test('Return the spelled-out string unit for each valid input unit', function () {
         
