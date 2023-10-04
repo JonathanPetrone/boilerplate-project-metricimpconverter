@@ -24,10 +24,10 @@ suite('Unit Tests', function(){
         // Arrange
         const input = "1.9";
         
-        // Act: Call the getNum method with the test input
+        // Act
         const num = convertHandler.getNum(input);
         
-        // Assert: Compare the actual result to the expected result
+        // Assert
         const expectedNum = 1.9;
         assert.equal(num, expectedNum, `Expected ${expectedNum}, but got ${num}`);
       });
@@ -35,46 +35,54 @@ suite('Unit Tests', function(){
     test('Fractional number input', function () {
         
         // Arrange
+        const input = "4/2";
         
         // Act
+        const num = convertHandler.getNum(input);
         
         // Assert
-       
-        assert.fail();
+        const expectedNum = 2;
+        assert.equal(num, expectedNum, `Expected ${expectedNum}, but got ${num}`);
       });
 
     test('Fractional number input with decimal', function () {
         
         // Arrange
+        const input = "4.2/2.3";
         
         // Act
+        const num = convertHandler.getNum(input);
         
         // Assert
-       
-        assert.fail();
-    });
+        const expectedNum = 1.8260869565217392;
+        assert.equal(num, expectedNum, `Expected ${expectedNum}, but got ${num}`);
+      });
 
     test('Error on a double-fraction', function () {
         
         // Arrange
+        const input = "4.2/2/1";
         
         // Act
+        const num = convertHandler.getNum(input);
         
         // Assert
-       
-        assert.fail();
-    });
+        const expectedNum = "Invalid number";
+        assert.equal(num, expectedNum, `Expected ${expectedNum}, but got ${num}`);
+      });
 
     test('Default to a numerical input of 1 when no numerical input is provided', function () {
         
         // Arrange
+        const input = "km";
         
         // Act
+        const num = convertHandler.getNum(input);
         
         // Assert
-       
-        assert.fail();
-    });
+        const expectedNum = "1";
+        assert.equal(num, expectedNum, `Expected ${expectedNum}, but got ${num}`);
+      });
 
     test('Read each valid input unit', function () {
         

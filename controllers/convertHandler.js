@@ -100,11 +100,23 @@ function ConvertHandler() {
       return result;
     }
 
-    // fraction logic needs to be fixed
+    const splitNumbers = inputNum.split('/')
 
-    // split string at / and check values left and right of the delimiter
+    let leftSideNum = splitNumbers[0];
+    let rightSideNum = splitNumbers[1];
 
-    // if values are ok do calculations
+    if (leftSideNum == "" || rightSideNum == ""){
+      result = "Invalid number"
+      console.log(result);
+      return result;
+    }
+
+    let firstNumber = Number(leftSideNum);
+    let secondNumber = Number(rightSideNum);
+
+    result = firstNumber / secondNumber;
+    console.log(result);
+    return result;
 
   } else {
       let result = Number(inputNum);
