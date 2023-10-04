@@ -6,17 +6,17 @@ function ConvertHandler() {
   let firstLetterRegex = /^[A-Za-z0-9]/
 
   //const input = "120/2abc";
-  let inputNum; 
+  
 
   if (firstLetterRegex.test(input)) {
     console.log("Valid input");
-    const firstLetterIsNotANumber = !isNaN(input.charAt(0));
-    console.log("is first letter a number? " + firstLetterIsNotANumber);
-    if (!firstLetterIsNotANumber) {
+    const firstLetterIsANumber = !isNaN(input.charAt(0));
+    console.log("is first letter a number? " + firstLetterIsANumber);
+    if (!firstLetterIsANumber) {
           result = 1;
           console.log(result)
           return result
-      }
+      } // check for and catch input likes "12" 
   } else {
     result = "Invalid number";
     console.log(result);
@@ -63,6 +63,7 @@ function ConvertHandler() {
               console.log(inputNum.charAt(i));
           }
           console.log("reached the end with " + inputNum);
+          result = inputNum;
           
           for (i = 0; i < numberOfSlashes; i++){
               console.log("number of iterations " + (i + 1))
