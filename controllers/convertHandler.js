@@ -1,82 +1,125 @@
+
+function checkIfStringContains(inputString, type){
+  let regex;
+
+  switch (type){
+    case "numbers":
+      regex = /[0-9]/;
+      break;
+    case "letters":
+      regex = /[A-Za-z]/;
+      break;
+    case "dots":
+      regex = /[.]/;
+      break;
+    case "slashes":
+      regex = /[/]/;
+      break;
+  }
+  
+  result = regex.test(inputString);
+  
+  return result;
+}
+
+function splitInputString(input){
+  for (i = 0; i < input.length; i++){
+    charAtIndex = input.charAt(i);
+    
+    let stringHasLetter = checkIfStringContains(input, "letters");
+    
+    if (stringHasLetter){
+        if (charAtIndex.match(/[A-Za-z]/)){
+          console.log("its a match -> " + charAtIndex)
+          
+          //slices the input with the end being the first letter occuring and saving a string up top that point
+          numberInput = input.slice(0, i)
+          unitInput = input.slice(i)
+    
+          console.log("number: " + numberInput + "unit: " + unitInput);
+          
+          result = [numberInput, unitInput];
+          console.log(result);
+          
+          return result
+            }
+        } else {
+            numberInput = input;
+            unitInput = "no unit";
+            result = [numberInput, unitInput];
+            return result
+        }
+    }
+}
+
 function ConvertHandler() {
   
   this.getNum = function(input) {
   let result;
 
-  let firstLetterRegex = /^[A-Za-z0-9]/
-
-  //const input = "120/2abc";
+  stringHasNum = checkIfStringContains(input, "numbers");
+  isFirstCharIsLetter = checkIfStringContains(input.charAt(0), "letters");
   
-
-  if (firstLetterRegex.test(input)) {
-    console.log("Valid input");
-    const firstLetterIsANumber = !isNaN(input.charAt(0));
-    console.log("is first letter a number? " + firstLetterIsANumber);
-    if (!firstLetterIsANumber) {
-          result = 1;
-          console.log(result)
-          return result
-      } // check for and catch input likes "12" 
-  } else {
-    result = "Invalid number";
-    console.log(result);
+  if(!stringHasNum && isFirstCharIsLetter){
+    result = 1;
+    console.log(result)
+    return result
+  } else if (!stringHasNum && !isFirstCharIsLetter){
+    result = "Invalid number"
+    console.log(result)
     return result
   }
 
-  for (i = 1; i < input.length; i++){
-      //starting at index 1 as index 0 is already checked
-      let charAtIndex = input.charAt(i)
-      let numberOfSlashes = 0;
-      console.log(charAtIndex);
+  let getNumberInputString = splitInputString(input);
+  let inputNum = getNumberInputString[0];
+
+  let cleaningRegex = /[^0-9./]/;
+  let unCleanString = cleaningRegex.test(inputNum);
+  
+  if (unCleanString) {
+    result = "Invalid number"
+    console.log("String is unclean: " + result);
+    return result
+  }
+  
+  stringHasSlashes = checkIfStringContains(inputNum, "slashes");
+  
+  if (stringHasSlashes){
+    slashesInString = 0;
+
+    for (i = 0; i < inputNum.length; i++){
+      charAtIndex = inputNum.charAt(i);
+      if (inputNum.charAt(i) == "/"){
+        slashesInString++
+      }
+    }
+
+    if (slashesInString > 1){
+      result = "Invalid number";
+      console.log("There are more than one slashes: " + result)
+      return result;
+    }
+
+    // fraction logic needs to be fixed
+
+    // split string at / and check values left and right of the delimiter
+
+    // if values are ok do calculations
+
+  } else {
+      let result = Number(inputNum);
+      let badResult = isNaN(result);
       
-      //checking for a match of alphabetic letters
-      if (charAtIndex.match(/[A-Za-z]/)){
-          console.log("its a match -> " + charAtIndex)
-          
-          //slices the input with the end being the first letter occuring and saving a string up top that point
-          inputNum = input.slice(0, i)
-          console.log(inputNum)
-          
-          for (i = 0; i < inputNum.length; i++){
-              let indexIsNotANum = isNaN(inputNum.charAt(i));
-              
-              if (indexIsNotANum && inputNum.charAt(i) == "/"){
-                  numberOfSlashes++
-                  console.log(numberOfSlashes);
-                  let nextIndexIsNotANum = isNaN(inputNum.charAt(i + 1));
-                  console.log("next char " + inputNum.charAt(i + 1));
-                  
-                  if (nextIndexIsNotANum || inputNum.charAt(i + 1) == ""){
-                      console.log("next char after / is not a number");
-                      result = "Invalid number"
-                      console.log(result);
-                      return result
-                  }
-              } //add else if (index is not num and == "." and else (result = "invalid number")
-              
-              if (numberOfSlashes > 1){
-                  result = "Invalid number"
-                  console.log(result);
-                  return result
-              }
-              
-              console.log(inputNum.charAt(i));
-          }
-          console.log("reached the end with " + inputNum);
-          result = inputNum;
-          
-          for (i = 0; i < numberOfSlashes; i++){
-              console.log("number of iterations " + (i + 1))
-              const splitForDivision = inputNum.split('/')
-              const newValue = splitForDivision[0] / splitForDivision[1]
-              // some kind of check if the result is a valid number and not just a string.
-              console.log(splitForDivision);
-              console.log(newValue);
-          }
-          
+      if (badResult){
+          result = "Invalid number"
+          console.log("Number conversion failed: " + result)
           return result
       }
-  };
+      console.log(result);
+      return result
+      }
+    }
+  }
   
   this.getUnit = function(input) {
     let result;
@@ -131,7 +174,6 @@ function ConvertHandler() {
     return result;
   };
   
-  }
-}
+
 
 module.exports = ConvertHandler;

@@ -22,12 +22,14 @@ suite('Unit Tests', function(){
     test('Decimal number input', function () {
         
         // Arrange
+        const input = "1.9";
         
-        // Act
+        // Act: Call the getNum method with the test input
+        const num = convertHandler.getNum(input);
         
-        // Assert
-       
-        assert.fail();
+        // Assert: Compare the actual result to the expected result
+        const expectedNum = 1.9;
+        assert.equal(num, expectedNum, `Expected ${expectedNum}, but got ${num}`);
       });
 
     test('Fractional number input', function () {
