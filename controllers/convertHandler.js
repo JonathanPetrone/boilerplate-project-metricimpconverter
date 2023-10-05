@@ -131,7 +131,6 @@ function ConvertHandler() {
     let inputUnit = getUnitInputString[1];
     
     let checkInputUnit = inputUnit.toLowerCase();
-    console.log(checkInputUnit);
     
     switch(checkInputUnit){
         case "km":
@@ -158,13 +157,39 @@ function ConvertHandler() {
             return result;
     }
 
+    console.log(inputUnit)
     return inputUnit;
   };
   
   this.getReturnUnit = function(initUnit) {
     let result;
+
+    switch(initUnit){
+      case "km":
+          returnUnit = "mi"
+          break;
+      case "mi":
+          returnUnit = "km"
+          break;
+      case "gal":
+          returnUnit = "L"
+          break;
+      case "L":
+          returnUnit = "gal"
+          break;
+      case "lbs":
+          returnUnit = "kg"
+          break;
+      case "kg":
+          returnUnit = "lbs"
+          break;
+      default:
+        result = "Invalid unit"
+        console.log(result)
+        return result; 
+    }
     
-    return result;
+    return returnUnit;
   };
 
   this.spellOutUnit = function(unit) {
@@ -191,13 +216,42 @@ function ConvertHandler() {
   };
   
   this.convert = function(initNum, initUnit) {
+    let result;
     const galToL = 3.78541;
     const lToGal = 0.264172;
     const lbsToKg = 0.453592;
     const kgToLbs = 2.20462;
     const miToKm = 1.60934;
     const kmToMi = 0.621371;
-    let result;
+
+    let conversionValue;
+
+    switch(initUnit){
+      case "km":
+          conversionValue = kmToMi;
+          break;
+      case "mi":
+          conversionValue = miToKm;
+          break;
+      case "gal":
+          conversionValue = galToL;
+          break;
+      case "L":
+          conversionValue = lToGal;
+          break;
+      case "lbs":
+          conversionValue = lbsToKg;
+          break;
+      case "kg":
+          conversionValue = kgToLbs;
+          break;
+      default:
+        result = "Invalid conversion"
+        console.log(result)
+        return result; 
+    }
+
+    result = initNum * conversionValue;
     
     return result;
   };

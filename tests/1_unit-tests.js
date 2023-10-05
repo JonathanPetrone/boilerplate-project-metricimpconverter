@@ -135,78 +135,103 @@ suite('Unit Tests', function(){
     test('Return the spelled-out string unit for each valid input unit', function () {
         
         // Arrange
+        const input = "kg";
         
         // Act
+        const unit = convertHandler.spellOutUnit(input);
         
         // Assert
-       
-        assert.fail();
-    });
+        const expectedUnit = "kilograms";
+        assert.equal(unit, expectedUnit, `Expected ${expectedUnit}, but got ${unit}`);
+      });
 
     test('Convert gal to L', function () {
         
         // Arrange
+        const inputNum = "10"
+        const inputUnit = "gal"
         
         // Act
+        const convertOperation = convertHandler.convert(inputNum, inputUnit);
         
+
         // Assert
-       
-        assert.fail();
+        const expectedOutput = 37.8541
+        assert.equal(convertOperation, expectedOutput, `Expected ${expectedOutput}, but got ${convertOperation}`);
     });
 
     test('Convert L to gal', function () {
         
         // Arrange
+        const inputNum = "10"
+        const inputUnit = "L"
         
         // Act
+        const convertOperation = convertHandler.convert(inputNum, inputUnit);
         
+
         // Assert
-       
-        assert.fail();
+        const expectedOutput = 2.64172
+        assert.approximately(convertOperation, expectedOutput, 0.1, `Expected ${expectedOutput}, but got ${convertOperation}`);
     });
 
     test('Convert mi to km', function () {
         
         // Arrange
+        const inputNum = "10"
+        const inputUnit = "mi"
         
         // Act
+        const convertOperation = convertHandler.convert(inputNum, inputUnit);
         
+
         // Assert
-       
-        assert.fail();
+        const expectedOutput = 16.0934
+        assert.approximately(convertOperation, expectedOutput, 0.1, `Expected ${expectedOutput}, but got ${convertOperation}`);
     });
 
     test('Convert km to mi', function () {
         
         // Arrange
+        const inputNum = "10"
+        const inputUnit = "km"
         
         // Act
+        const convertOperation = convertHandler.convert(inputNum, inputUnit);
         
+
         // Assert
-       
-        assert.fail();
+        const expectedOutput = 6.21371
+        assert.approximately(convertOperation, expectedOutput, 0.1, `Expected ${expectedOutput}, but got ${convertOperation}`);
     });
 
     test('Convert lbs to kg', function () {
         
         // Arrange
+        const inputNum = "10"
+        const inputUnit = "lbs"
         
         // Act
+        const convertOperation = convertHandler.convert(inputNum, inputUnit);
         
-        // Assert
-       
-        assert.fail();
-    });
 
+        // Assert
+        const expectedOutput = 4.53592
+        assert.approximately(convertOperation, expectedOutput, 0.1, `Expected ${expectedOutput}, but got ${convertOperation}`);
+    });
+    
     test('Convert kg to lbs' , function () {
         
         // Arrange
+        const inputNum = "10"
+        const inputUnit = "kg"
         
         // Act
+        const convertOperation = convertHandler.convert(inputNum, inputUnit);
         
         // Assert
-       
-        assert.fail();
+        const expectedOutput = 22.0462
+        assert.approximately(convertOperation, expectedOutput, 0.1, `Expected ${expectedOutput}, but got ${convertOperation}`);
     });
 
 });
