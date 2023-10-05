@@ -20,10 +20,13 @@ module.exports = function (app) {
 
       if (initNum == "Invalid number" && initUnit == "Invalid unit"){
         res.send("invalid number and unit")
+        return
       } else if (initUnit == "Invalid unit"){
         res.send("invalid unit")
+        return
       } else if (initNum == "Invalid number"){
         res.send("invalid number")
+        return
       }
       
       res.json({

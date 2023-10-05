@@ -226,33 +226,35 @@ function ConvertHandler() {
 
     let conversionValue;
 
-    switch(initUnit){
+    switch (initUnit) {
       case "km":
-          conversionValue = kmToMi;
-          break;
+        conversionValue = miToKm;
+        result = parseFloat((initNum / conversionValue).toFixed(5));
+        return result;
       case "mi":
-          conversionValue = miToKm;
-          break;
+        conversionValue = miToKm;
+        break;
       case "gal":
-          conversionValue = galToL;
-          break;
+        conversionValue = galToL;
+        break;
       case "L":
-          conversionValue = lToGal;
-          break;
+        conversionValue = lToGal;
+        break;
       case "lbs":
-          conversionValue = lbsToKg;
-          break;
+        conversionValue = lbsToKg;
+        break;
       case "kg":
-          conversionValue = kgToLbs;
-          break;
+        conversionValue = lbsToKg;
+        result = parseFloat((initNum / conversionValue).toFixed(5));
+        return result;
       default:
         result = "Invalid conversion"
         console.log(result)
-        return result; 
+        return result;
     }
 
-    result = initNum * conversionValue;
-    
+    result = parseFloat((initNum * conversionValue).toFixed(5));
+
     return result;
   };
   

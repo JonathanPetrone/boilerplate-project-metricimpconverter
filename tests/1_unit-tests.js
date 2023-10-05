@@ -132,6 +132,19 @@ suite('Unit Tests', function(){
         assert.equal(unit, expectedUnit, `Expected ${expectedUnit}, but got ${unit}`);
       });
 
+    test('Return the correct return unit for each valid input unit', function() {
+
+        // Arrange
+        const input = "kg";
+    
+        // Act
+        const unit = convertHandler.getReturnUnit(input);
+    
+        // Assert
+        const expectedUnit = "lbs";
+        assert.equal(unit, expectedUnit, `Expected ${expectedUnit}, but got ${unit}`);
+      });
+
     test('Return the spelled-out string unit for each valid input unit', function () {
         
         // Arrange
